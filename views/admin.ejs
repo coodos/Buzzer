@@ -5,17 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Admin Panel | <%-user.name%></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/journal/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/admin.css">
   </head>
   <body>
-    <div class="container">
-
-    <h1>Yo admin</h1>
-    </div>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+    <body>
+      <div class="cont">
+        <div class="left">
+          <div class="buzzArea" id="topClick">
+            <%if (responses[0]) {%>
+            <% var respp = responses[0] %>
+            <h1><%- respp.name %></h1>
+            <h2><%- respp.schoolAndLoc %></h2>
+            <% } %>
+          </div>
+          <div class="userResponse">
+            <button class="buttonBuzz" id="activate">Re-Activate Buzzer</button>
+            <button class="buttonBuzz" id="deactivate" onclick="window.location.href = '/users/logout'">logout</button>
+          </div>
+        </div>
+        <div class="right" id="responsesArea">
+          <div class="responseHolder">
+            <% if (responses) { responses.forEach((response) => { %>
+              <div class="response">
+                <div class="data"> 
+                  <h1><%- response.name %></h1><h2> +<%- response.timeStamp %>s</h2>
+                  <p><%- response.schoolAndLoc %></p>
+                </div>
+              </div>
+            <% })} %>
+          </div>
+        </div>
+      </div>
+      <script
+          src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous">
+      </script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"
+      ></script>
+      <script src="/js/admin.js"></script>
   </body>
 </html>
 

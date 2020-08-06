@@ -4,7 +4,10 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 const User = require('../models/User');
 const Response = require('../models/Response')
-// const buzzerTimer = require('../models/buzzerTimer')
+const buzzerTimer = require('../models/BuzzerTimer');
+const BuzzerTimer = require('../models/BuzzerTimer');
+const { response } = require('express');
+const e = require('express');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
@@ -12,7 +15,50 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   if (req.user.email === "admin@admin.com") {
-    res.render('admin')
+    Response.find({}, (err, documents) => {
+      // documents.length = 5;
+      if (err) throw err;
+      else {
+        documents = documents.sort(function(a, b) {
+          return parseFloat(a.timeStamp) - parseFloat(b.timeStamp);
+        });
+        BuzzerTimer.find({}, (err, doc) => {
+          if (doc[0]) {
+            time = Number(doc[0].time);          
+            if (documents.length > 1) {
+              // console.log(documents.length)
+              for (var i = 0; i < documents.length; i++) {
+                // console.log((Number(documents[i].timeStamp) - time)/1000)
+                documents[i].timeStamp = (Number(documents[i].timeStamp) - time)/1000  
+                  // console.log(Number(documents[i].timeStamp) - Number(documents[0].timeStamp))
+                
+                // console.log(i)
+                if (i == documents.length - 1) {
+                  // documents[0].timeStamp = (Number(documents[i].timeStamp) - time)/1000  
+                  res.render('admin', {
+                    user: req.user,
+                    responses: documents
+                  })
+                }
+              }
+            } else if (documents.length > 0) {
+              // console.log(':(')
+              // documents[0].timeStamp = (Number(documents[0].timeStamp) - time)/1000
+              documents[0].timeStamp = ((Number(documents[0].timeStamp) - Number(time)) /1000)
+              res.render('admin', {
+                user: req.user,
+                responses: documents
+              })
+            } else {
+              res.render('admin', {
+                user: req.user,
+                responses: documents
+              })
+            }
+          }         
+        })
+      }
+    })
   } else {
     Response.find({}, (err, documents) => {
       // documents.length = 5;
@@ -21,32 +67,45 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
         documents = documents.sort(function(a, b) {
           return parseFloat(a.timeStamp) - parseFloat(b.timeStamp);
         });
-        if (documents.length > 1) {
-          // console.log(documents.length)
-          for (var i = 0; i < documents.length; i++) {
-            if (i === 0) {
-              continue;
+        BuzzerTimer.find({}, (err, doc) => {
+          if (doc[0]) {
+            // console.log(doc[0].time)
+            time = Number(doc[0].time);
+            if (documents.length > 1) {
+              // console.log(documents.length)
+              for (var i = 0; i < documents.length; i++) {
+                // console.log((Number(documents[i].timeStamp) - time)/1000)
+                documents[i].timeStamp = (Number(documents[i].timeStamp) - time)/1000
+    
+                  // console.log(Number(documents[i].timeStamp) - Number(documents[0].timeStamp))
+              
+                // console.log(i)
+                
+                if (i == documents.length - 1) {
+                  res.render('dashboard', {
+                    user: req.user,
+                    responses: documents,
+                    time: time
+                  })
+                }
+              }
+            } else if (documents.length > 0) {
+              // console.log(':(')
+              // documents[0].timeStamp = (Number(documents[0].timeStamp) - time)/1000
+              documents[0].timeStamp = ((Number(documents[0].timeStamp) - Number(time)) /1000)
+              res.render('dashboard', {
+                user: req.user,
+                responses: documents,
+                time: time
+              })
             } else {
-              documents[i].timeStamp = (Number(documents[i].timeStamp) - Number(documents[0].timeStamp))/1000
-
-              // console.log(Number(documents[i].timeStamp) - Number(documents[0].timeStamp))
-            }
-            // console.log(i)
-            if (i == documents.length - 1) {
-              documents[0].timeStamp = 0;
               res.render('dashboard', {
                 user: req.user,
                 responses: documents
               })
             }
           }
-        } else {
-          // console.log(':(')
-          res.render('dashboard', {
-            user: req.user,
-            responses: documents
-          })
-        }
+        })
       }
     })
   }
@@ -71,6 +130,40 @@ router.post('/buzz', ensureAuthenticated, (req, res) => {
       response.save()
     }
   })
+})
+
+router.post('/activateBuzzer', ensureAuthenticated, (req, res) => {
+  if (req.user.email == 'admin@admin.com') {
+    Response.remove({}, function(err) { 
+      if (err) throw err
+      console.log('collection removed') 
+    }).then(() => {
+      buzzerTimer.deleteMany({}).then(() => {
+        Response.deleteMany({})
+        var timestamp = req.body.time;
+        const buzzer = new buzzerTimer({
+          time: timestamp
+        });
+        buzzer.save()
+        .then(() => {
+          res.redirect(req.get('referer'));
+        })
+      })
+    })
+  }
+})
+
+router.get('/deactivateBuzzer', ensureAuthenticated, (req, res) => {
+  Response.remove({}, function(err) { 
+    if (err) throw err
+    console.log('collection removed') 
+  }).then(() => {
+    if (req.user.email === "admin@admin.com") {
+      BuzzerTimer.deleteMany({}).then(() => {
+        res.redirect(req.get('referer'));
+      })
+    }
+  })  
 })
 
 module.exports = router;
