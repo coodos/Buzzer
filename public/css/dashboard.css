@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 body {
     background-image: linear-gradient(to bottom right, #00FF57, #7F00E2);
@@ -64,5 +65,60 @@ body {
     width: 100%;
     height: 21vh;
     margin-top: 2vh;
+    padding: 20px;
     border-radius: 1vh;
+}
+
+.responseHolder {
+    height: 96%;
+    width: 96%;
+    overflow-y: auto;
+    margin: 2%;
+}
+
+.response {
+    width: 100%;
+    height: 16.4vh;
+}
+
+.response>.data h1 {
+    float: left;
+    font-family: "Raleway", sans-serif;
+    padding: 1vh;
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+.response>.data h2 {
+    float: right;
+    font-family: "Roboto", sans-serif;
+    padding: 1vh;
+    margin-right: 1vh;
+    /* margin-top: 1vh; */
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+.response>.data p {
+    float: left;
+    position: absolute;
+    margin-top: 6vh;
+    margin-left: 1.2vh;
+    font-size: 3vh;
+}
+
+.response:nth-of-type(odd) {
+    background-color: rgba(240, 240, 240, 0.5);
+}
+
+.response:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.5);    
+}
+
+.responseHolder::-webkit-scrollbar {
+    display: none;
+}
+
+.data {
+    padding: 17px;
 }

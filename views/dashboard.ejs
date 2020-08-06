@@ -21,16 +21,24 @@
         </div>
         <div class="userResponse"></div>
       </div>
-      <div class="right">
-        
+      <div class="right" id="responsesArea">
+        <div class="responseHolder">
+          <% if (responses) { responses.forEach((response) => { %>
+            <div class="response">
+              <div class="data"> 
+                <h1><%- response.name %></h1><h2> +<%- response.timeStamp %>s</h2>
+                <p><%- response.schoolAndLoc %></p>
+              </div>
+            </div>
+          <% })} %>
+        </div>
       </div>
     </div>
-    <script src="/js/dashboard.js"></script>
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+			  src="https://code.jquery.com/jquery-3.5.1.js"
+			  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
       integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -41,5 +49,6 @@
       integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/dashboard.js"></script>
   </body>
 </html>
