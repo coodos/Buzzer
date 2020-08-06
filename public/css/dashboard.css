@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+body {
+    background-image: linear-gradient(to bottom right, #00FF57, #7F00E2);
+    height: 100%;
+    width: 100%;
+}
+
+.cont {
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.right {
+    float: right;
+    background-color: rgba(234, 234, 234, 0.35);
+    height: 86vh;
+    width: 40%;
+    margin-right: 7vh;
+    margin-top: 7vh;
+    border-radius: 1vh;
+}
+
+.left {
+    float: left;
+    height: 86vh;
+    width: 52%;
+    margin-top: 7vh;
+    margin-left: 7vh;
+}
+
+.buzzArea {
+    height: 63vh;
+    width: 100%;
+    border-radius: 1vh;
+    background-color: rgba(234, 234, 234, 0.6); ;
+}
+
+#buzzer {
+    height: 53vh;
+    border-radius: 26.5vh;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 5vh;
+    background-image: linear-gradient(to bottom right, #FF0000, #820000);
+    margin-left: 25%;
+    font-size: 40px;
+    width: 53vh;
+    transition: ease-in-out all 0.15s;
+    color: white;
+}
+
+#buzzer:hover {
+    border: 1.5vh solid white;
+    transition: ease-in-out all 0.15s;
+}
+
+.userResponse {
+    background-color: rgba(234, 234, 234, 0.35);
+    width: 100%;
+    height: 21vh;
+    margin-top: 2vh;
+    border-radius: 1vh;
+}
