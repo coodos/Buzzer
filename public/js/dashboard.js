@@ -24,7 +24,17 @@ setInterval(function () {
     time = document.getElementById('epoch').innerText;
     timeEnd = document.getElementById('endTime').innerText;
     timeNow = Math.floor(Date.now());
-    
+
+    if (document.querySelector('.response h2')) {
+        var fastest = document.querySelector('.response h2').innerText;
+        var userTime = document.getElementById('responseTime').innerText;
+
+        if (userTime == fastest) {
+            document.getElementById('responseTime').style.color = "green";
+        } else {
+            document.getElementById('responseTime').style.color = "maroon";
+        }
+    }
     // if (timeEnd < timeNow) {
     //     inv.style.display = 'block';
     //     button.classList.remove('buzzerActive');
