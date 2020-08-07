@@ -4,6 +4,10 @@ const BuzzerSchema = new mongoose.Schema({
   time: {
     type: Number,
     required: true
+  },
+  timeEnd: {
+    type: Number,
+    required: true
   }
 });
 

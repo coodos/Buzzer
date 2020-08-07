@@ -55,7 +55,12 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                 responses: documents
               })
             }
-          }         
+          } else {
+            res.render('admin', {
+              user: req.user,
+              responses: documents
+            })
+          }       
         })
       }
     })
@@ -71,6 +76,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
           if (doc[0]) {
             // console.log(doc[0].time)
             time = Number(doc[0].time);
+            timeEnd = Number(doc[0].timeEnd)
+            // console.log(timeEnd)
             if (documents.length > 1) {
               // console.log(documents.length)
               for (var i = 0; i < documents.length; i++) {
@@ -85,7 +92,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
                   res.render('dashboard', {
                     user: req.user,
                     responses: documents,
-                    time: time
+                    time: time,
+                    end: timeEnd
                   })
                 }
               }
@@ -96,14 +104,24 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
               res.render('dashboard', {
                 user: req.user,
                 responses: documents,
-                time: time
+                time: time,
+                end: timeEnd
               })
             } else {
               res.render('dashboard', {
                 user: req.user,
-                responses: documents
+                responses: documents,
+                time: time,
+                end: timeEnd
               })
             }
+          } else {
+            res.render('dashboard', {
+              user: req.user,
+              responses: documents,
+              time: 20000000000000000000000000000000000000000000,
+              end: 2000000000000000000000000000000000000000000000
+            })
           }
         })
       }
@@ -140,13 +158,25 @@ router.post('/activateBuzzer', ensureAuthenticated, (req, res) => {
     }).then(() => {
       buzzerTimer.deleteMany({}).then(() => {
         Response.deleteMany({})
-        var timestamp = req.body.time;
+        var timestamp = Number(req.body.time) + 10000;
+        // timeStamp = Number(timeStamp);
+        
+        /*
+        =======================================================================================
+
+        CHANGE THE VALUES BELOW TO CHANGE THE TIME AND TIME END FOR THE BUZZER
+
+        =======================================================================================
+        */
+
         const buzzer = new buzzerTimer({
-          time: timestamp
+          time: timestamp,
+          timeEnd: Number(req.body.time) + 20000
         });
         buzzer.save()
         .then(() => {
           res.redirect(req.get('referer'));
+          console.log(req.body.time)
         })
       })
     })

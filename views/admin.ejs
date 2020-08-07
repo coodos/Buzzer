@@ -21,10 +21,11 @@
             <% var respp = responses[0] %>
             <h1><%- respp.name %></h1>
             <h2><%- respp.schoolAndLoc %></h2>
+            <img src="/imgs/joy.gif" alt="" class="fireworks">
             <% } %>
           </div>
           <div class="userResponse">
-            <button class="buttonBuzz" id="activate">Re-Activate Buzzer</button>
+            <button class="buttonBuzz" id="activate">Reset Buzzer</button>
             <button class="buttonBuzz" id="deactivate" onclick="window.location.href = '/users/logout'">logout</button>
           </div>
         </div>

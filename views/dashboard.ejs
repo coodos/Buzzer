@@ -14,14 +14,19 @@
     <link rel="stylesheet" href="/css/dashboard.css">
   </head>
   <body>
-    <div class="impData" style="display: none;">
+    <div class="impData" id="stuff" style="display: none;">
+      <%- time %>
       <h1 id="epoch"><%- time %></h1>
+      <h2 id="endTime"><%- end %></h1>
       
+    </div>
+    <div id="invisible">
+
     </div>
     <div class="cont">
       <div class="left">
         <div class="buzzArea">
-          <button id="buzzer">Buzz!</button>
+          <button id="buzzer" class="buzzerActive">Buzz!</button>
         </div>
         <div class="userResponse">
           <h1>Your Response Time <span style="font-weight: bolder; color: maroon;" id="responseTime"></span></h1>

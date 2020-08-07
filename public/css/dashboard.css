@@ -41,7 +41,7 @@ body {
     background-color: rgba(234, 234, 234, 0.6); ;
 }
 
-#buzzer {
+.buzzerActive {
     height: 53vh;
     border-radius: 26.5vh;
     border: none;
@@ -55,7 +55,29 @@ body {
     color: white;
 }
 
-#buzzer:hover {
+.buzzerInactive {
+    height: 53vh;
+    border-radius: 26.5vh;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 5vh;
+    background-image: linear-gradient(to bottom right, #A7A7A7, #4F4F4F);
+    margin-left: 25%;
+    font-size: 40px;
+    width: 53vh;
+    transition: ease-in-out all 0.15s;
+    color: white;
+}
+
+#invisible {
+    position: absolute;
+    height: 100%;
+    z-index: 5;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.buzzerActive:hover {
     border: 1.5vh solid white;
     transition: ease-in-out all 0.15s;
 }

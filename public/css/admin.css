@@ -65,7 +65,7 @@ body {
 }
 
 .buzzArea h1 {
-    padding-top: 14vh;
+    padding-top: 19vh;
     font-family: 'Raleway';
     font-size: 60px;
 }
@@ -169,4 +169,11 @@ body {
 #deactivate {
     background-color: #ff2b2b;
     font-family: 'Roboto', sans-serif;
+}
+
+.fireworks {
+    position: absolute;
+    top: 15vh;
+    z-index: -1;
+    left: 18%;
 }
