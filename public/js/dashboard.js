@@ -3,6 +3,8 @@ var time = document.getElementById('epoch').innerText;
 var inv = document.getElementById('invisible')
 var timeEnd = document.getElementById('endTime').innerText;
 
+inv.style.display = 'block';
+
 buzzer.onclick = function () {
     var timeStamp = Math.floor(Date.now());
     console.log((timeStamp - time)/1000);
