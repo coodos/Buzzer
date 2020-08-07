@@ -4,8 +4,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 const User = require('../models/User');
 const Response = require('../models/Response')
-const buzzerTimer = require('../models/BuzzerTimer');
-const BuzzerTimer = require('../models/BuzzerTimer');
+const BuzzerTimer = require('../models/buzzerTimer');
 const { response } = require('express');
 const e = require('express');
 
@@ -156,7 +155,7 @@ router.post('/activateBuzzer', ensureAuthenticated, (req, res) => {
       if (err) throw err
       console.log('collection removed') 
     }).then(() => {
-      buzzerTimer.deleteMany({}).then(() => {
+      BuzzerTimer.deleteMany({}).then(() => {
         Response.deleteMany({})
         var timestamp = Number(req.body.time) + 10000;
         // timeStamp = Number(timeStamp);
@@ -169,7 +168,7 @@ router.post('/activateBuzzer', ensureAuthenticated, (req, res) => {
         =======================================================================================
         */
 
-        const buzzer = new buzzerTimer({
+        const buzzer = new BuzzerTimer({
           time: timestamp,
           timeEnd: Number(req.body.time) + 20000
         });
