@@ -10,6 +10,7 @@ const { response } = require('express');
 const e = require('express');
 
 // Welcome Page
+// soham sux
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 // Dashboard
