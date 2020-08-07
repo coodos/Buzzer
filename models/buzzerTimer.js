@@ -14,5 +14,3 @@ const BuzzerSchema = new mongoose.Schema({
 const BuzzerTimer = mongoose.model('BuzzerTimer', BuzzerSchema);
 
 module.exports = BuzzerTimer;
-
-// shit
