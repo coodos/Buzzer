@@ -49,4 +49,4 @@ setInterval(function () {
         button.classList.remove('buzzerActive');
         button.classList.add('buzzerInactive');
     }
-}, 100);
+}, 1000);
