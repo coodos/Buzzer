@@ -171,7 +171,7 @@ router.post('/activateBuzzer', ensureAuthenticated, (req, res) => {
 
         const buzzer = new BuzzerTimer({
           time: timestamp,
-          timeEnd: Number(req.body.time) + 40000
+          timeEnd: Number(req.body.time) + 70000
         });
         buzzer.save()
         .then(() => {
