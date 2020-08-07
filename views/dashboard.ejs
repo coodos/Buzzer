@@ -20,16 +20,16 @@
       <h2 id="endTime"><%- end %></h1>
       
     </div>
-    <div id="invisible">
-
-    </div>
+    
     <div class="cont">
       <div class="left">
         <div class="buzzArea">
+          <div id="invisible"></div>
           <button id="buzzer" class="buzzerActive">Buzz!</button>
         </div>
         <div class="userResponse">
           <h1>Your Response Time <span style="font-weight: bolder; color: maroon;" id="responseTime"></span></h1>
+          <button onclick="window.location.href = '/users/logout'">Logout</button>
         </div>
       </div>
       <div class="right" id="responsesArea">

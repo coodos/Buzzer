@@ -20,6 +20,7 @@ body {
     float: right;
     background-color: rgba(234, 234, 234, 0.35);
     height: 86vh;
+    min-width: 300px;
     width: 40%;
     margin-right: 7vh;
     margin-top: 7vh;
@@ -31,6 +32,7 @@ body {
     height: 86vh;
     width: 52%;
     margin-top: 7vh;
+    min-width: 300px;
     margin-left: 7vh;
 }
 
@@ -42,8 +44,12 @@ body {
 }
 
 .buzzerActive {
-    height: 53vh;
     border-radius: 26.5vh;
+    height: 25.5vw;
+    border-radius: 12.75vw;
+    min-width: 240px;
+    /* min-height: 240px; */
+    width: 25.5vw;
     border: none;
     font-family: 'Raleway', sans-serif;
     margin-top: 5vh;
@@ -56,24 +62,26 @@ body {
 }
 
 .buzzerInactive {
-    height: 53vh;
-    border-radius: 26.5vh;
+    height: 25.5vw;
+    border-radius: 12.75vw;
+    min-width: 240px;
+    /* min-height: 240px; */
     border: none;
     font-family: 'Raleway', sans-serif;
     margin-top: 5vh;
     background-image: linear-gradient(to bottom right, #A7A7A7, #4F4F4F);
     margin-left: 25%;
     font-size: 40px;
-    width: 53vh;
+    width: 25.5vw;
     transition: ease-in-out all 0.15s;
     color: white;
 }
 
 #invisible {
     position: absolute;
-    height: 100%;
+    height: 63%;
     z-index: 5;
-    width: 100%;
+    width: 52%;
     background-color: rgba(255, 255, 255, 0);
 }
 
@@ -149,4 +157,88 @@ body {
 
 .data {
     padding: 17px;
+}
+
+.userResponse > h1 {
+    float: left;
+    padding-top: 5vh;
+    width: 70%;
+}
+
+.userResponse > button {
+    background-color: #ff2b2b;
+    font-family: 'Roboto', sans-serif;
+    width: 20%;
+    margin: 1.8vh 0;
+    height: 80px;
+    border: none;
+    font-size: 24px;
+    font-weight: bolder;
+    color: white;
+    float: right;
+    border-radius: 5px;
+}
+
+.userResponse > button:hover {
+    border: 5px solid white;
+}
+
+@media only screen and (max-device-width: 480px) {
+    /* define mobile specific styles come here */
+
+    .right {
+        margin-top: -27vh;
+        margin-right: 5.5vh;
+        margin-bottom: 10vh;
+    }
+
+    #invisble {
+        height: 20vh;
+        background-color: white;
+    }
+
+    .buzzArea {
+        height: 20vh;
+    }
+
+    .buzzerInactive {
+        padding: 5%;
+        margin: 10%;
+    }
+
+    .buzzerActive {
+        padding: 5%;
+        margin: 10%;
+        width: 240px;
+    }
+
+    .response p {
+        display: none;
+        text-align: center;
+        float: left;
+        font-size: 10px;
+    }
+
+    .response h1 {
+        text-align: center;
+    }
+
+    .response {
+        font-size: 10px;
+        text-align: center;
+        height: 20vh;
+    }
+    
+    .userResponse > h1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .userResponse > button {
+        width: 100%;
+    }
+
+    .userResponse {
+        height: 35vh;
+    }
 }

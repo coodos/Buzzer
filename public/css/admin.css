@@ -21,6 +21,7 @@ body {
     background-color: rgba(234, 234, 234, 0.35);
     height: 86vh;
     width: 40%;
+    min-width: 300px;
     margin-right: 7vh;
     margin-top: 7vh;
     border-radius: 1vh;
@@ -31,6 +32,7 @@ body {
     height: 86vh;
     width: 52%;
     margin-top: 7vh;
+    min-width: 300px;
     margin-left: 7vh;
 }
 
@@ -176,4 +178,34 @@ body {
     top: 15vh;
     z-index: -1;
     left: 18%;
+}
+
+@media only screen and (max-device-width: 480px) {
+
+    .right {
+        margin-top: 2vh;
+        margin-right: 5.5vh;
+        margin-bottom: 10vh;
+    }
+
+    #activate {
+        width: 95%;
+        margin-top: -0.5vh;
+    }
+
+    #deactivate {
+        width: 95%;
+        margin-left: 3%;
+        margin-top: -3vh;
+    }
+
+    .response {
+        height: 20vh;
+    }
+
+    .fireworks {
+        margin-left: -0.7vh;
+        width: 70%;
+    }
+
 }
